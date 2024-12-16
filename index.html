@@ -79,7 +79,7 @@
     <p><strong>Колесо Баланса</strong> – это инструмент саморефлексии, который позволяет визуально оценить удовлетворённость разными аспектами жизни. Оно помогает понять, какие сферы требуют внимания, и наметить шаги к улучшению.</p>
 
     <h3>Для чего это нужно?</h3>
-    <p>Жизнь – это сочетание множества сфер: от работы и финансов до отношений и отдыха. Когда какая-то из них «проседает», это часто приводит к дискомфорту, усталости и чувству неравновесия.Колесо баланса может помочь:</p>
+    <p>Жизнь – это сочетание множества сфер: от работы и финансов до отношений и отдыха. Когда какая-то из них «проседает», это часто приводит к дискомфорту, усталости и чувству неудовлетворённости.Колесо баланса может помочь:</p>
     <ul>
         <li>Увидеть реальную картину своей жизни;</li>
         <li>Понять, в каких областях есть удовлетворённость, а в каких – потребность в улучшении;</li>
@@ -203,19 +203,29 @@
         }
     });
 </script>
-     <script>
-        document.getElementById("downloadPdf").addEventListener("click", function () {
-            const element = document.body; // Весь контент страницы
-            const options = {
-                margin:       0.5, // Поля
-                filename:     'Колесо_Баланса.pdf', // Название файла
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2 }, // Масштаб для качества
-                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
-            };
+    <script>
+    document.getElementById("downloadPdf").addEventListener("click", function () {
+        // Получаем текущую дату в формате ГГГГ-ММ-ДД
+        const today = new Date();
+        const date = today.toISOString().split('T')[0]; // Получаем "2024-06-11"
 
-            html2pdf().set(options).from(element).save();
-        });
-    </script>
+        // Формируем название файла с датой
+        const fileName = `Колесо_Баланса_${date}.pdf`;
+
+        // Настройка параметров html2pdf
+        const element = document.body; // Выбираем весь контент страницы
+        const options = {
+            margin: 0.5,
+            filename: fileName, // Динамическое название файла
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Генерация и сохранение PDF
+        html2pdf().set(options).from(element).save();
+    });
+</script>
+
 </body>
 </html>
