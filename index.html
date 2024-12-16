@@ -203,5 +203,19 @@
         }
     });
 </script>
+     <script>
+        document.getElementById("downloadPdf").addEventListener("click", function () {
+            const element = document.body; // Весь контент страницы
+            const options = {
+                margin:       0.5, // Поля
+                filename:     'Колесо_Баланса.pdf', // Название файла
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 }, // Масштаб для качества
+                jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(options).from(element).save();
+        });
+    </script>
 </body>
 </html>
